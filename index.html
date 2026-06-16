@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Frambuesa Pastelería — Vitacura, Santiago</title>
+<link rel="icon" type="image/png" href="img/brand/logo-emblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta aprobada por cliente */
+    --cream:#faf2ec;
+    --cream-soft:#f5e8dd;
+    --pink-soft:#f5d8dc;
+    --pink:#d4969e;
+    --pink-deep:#c66f7c;
+    --brown:#b89878;
+    --brown-dark:#8a6852;
+    --ink:#4a2f24;
+    --hair:#e8d5c6;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block}
+
+  /* ---------- ANNOUNCE BAR ---------- */
+  .announce{
+    background:var(--ink);
+    color:var(--cream);
+    padding:9px 16px;
+    text-align:center;
+    overflow:hidden;
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+  }
+  .announce span{margin:0 12px;color:var(--pink-soft)}
+  .announce span.dot{color:var(--brown)}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(250,242,236,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--hair);
+    padding:14px 48px;
+    display:flex;justify-content:space-between;align-items:center;
+    transition:padding .3s ease;
+  }
+  nav.scrolled{padding:10px 48px}
+  .nav-logo{
+    display:flex;align-items:center;
+    text-decoration:none;
+  }
+  .nav-logo img{height:38px;width:auto}
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-weight:400;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--pink-deep)}
+  .nav-cta{
+    background:var(--pink-deep);
+    color:var(--cream)!important;
+    padding:10px 22px;
+    border-radius:2px;
+    font-size:11px!important;
+  }
+  .nav-cta:hover{background:var(--ink);color:var(--cream)!important}
+  .burger{display:none;cursor:pointer;flex-direction:column;gap:5px}
+  .burger span{width:24px;height:1px;background:var(--ink);transition:all .3s ease}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:90vh;
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    align-items:center;
+    position:relative;
+    padding:80px 48px 60px;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(212,150,158,.18), transparent 50%),
+      radial-gradient(circle at 10% 80%, rgba(245,216,220,.5), transparent 50%),
+      var(--cream);
+    overflow:hidden;
+    gap:60px;
+  }
+  .hero-content{padding-left:40px}
+  .hero-eyebrow{
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--brown-dark);
+    margin-bottom:28px;
+  }
+  .hero-logo{
+    width:100%;max-width:520px;height:auto;
+    margin-bottom:36px;
+  }
+  .hero-tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-style:italic;
+    font-weight:300;
+    color:var(--ink);
+    max-width:480px;
+    margin-bottom:40px;
+    line-height:1.5;
+  }
+  .hero-cta-group{
+    display:flex;gap:14px;flex-wrap:wrap;
+  }
+  .hero-cta{
+    display:inline-block;
+    padding:15px 32px;
+    background:var(--pink-deep);
+    color:var(--cream);
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    transition:all .3s ease;
+  }
+  .hero-cta:hover{background:var(--ink);transform:translateY(-2px)}
+  .hero-cta-alt{
+    background:transparent;
+    color:var(--ink);
+    border:1px solid var(--brown);
+  }
+  .hero-cta-alt:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+  .hero-img-wrap{
+    position:relative;
+    aspect-ratio:4/5;
+    max-height:80vh;
+    overflow:hidden;
+    border-radius:4px;
+    box-shadow:0 30px 80px -20px rgba(74,47,36,.25);
+  }
+  .hero-img-wrap img{
+    width:100%;height:100%;
+    object-fit:cover;
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+  }
+
+  /* ---------- SECCIONES ---------- */
+  section{padding:120px 48px;position:relative}
+  .section-eyebrow{
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--brown-dark);
+    margin-bottom:14px;
+    text-align:center;
+  }
+  .section-title{
+    font-family:'Great Vibes',cursive;
+    font-size:clamp(56px,8vw,96px);
+    text-align:center;
+    line-height:1;
+    margin-bottom:80px;
+    color:var(--pink-deep);
+  }
+
+  /* ---------- PRODUCTOS ---------- */
+  .productos{background:var(--cream)}
+  .productos-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:48px 36px;
+    max-width:1240px;
+    margin:0 auto;
+  }
+  .producto{
+    text-align:center;
+    transition:transform .4s ease;
+    cursor:pointer;
+  }
+  .producto:hover{transform:translateY(-6px)}
+  .producto-img{
+    width:100%;
+    aspect-ratio:1;
+    overflow:hidden;
+    margin-bottom:20px;
+    background:var(--pink-soft);
+    position:relative;
+  }
+  .producto-img img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform .8s ease;
+  }
+  .producto:hover .producto-img img{transform:scale(1.07)}
+  .producto-tag{
+    position:absolute;
+    top:14px;left:14px;
+    background:var(--cream);
+    color:var(--pink-deep);
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    padding:5px 10px;
+    z-index:1;
+  }
+  .producto-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:400;
+    margin-bottom:6px;
+    color:var(--ink);
+  }
+  .producto-desc{
+    font-size:13px;
+    color:var(--brown-dark);
+    letter-spacing:.3px;
+    margin-bottom:10px;
+    line-height:1.4;
+  }
+  .producto-price{
+    font-size:13px;
+    color:var(--pink-deep);
+    letter-spacing:1.5px;
+    font-weight:500;
+  }
+
+  /* ---------- HISTORIA ---------- */
+  .historia{
+    background:var(--cream-soft);
+  }
+  .historia-wrap{
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .historia-text{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:300;
+    line-height:1.7;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+  .historia-text em{
+    font-family:'Great Vibes',cursive;
+    font-style:normal;
+    color:var(--pink-deep);
+    font-size:34px;
+  }
+  .historia-firma{
+    font-family:'Great Vibes',cursive;
+    font-size:42px;
+    color:var(--pink-deep);
+    margin-top:36px;
+  }
+  .divider-mini{
+    width:60px;height:1px;
+    background:var(--brown);
+    margin:28px auto;
+  }
+
+  /* ---------- VISITANOS ---------- */
+  .visitanos{background:var(--cream)}
+  .visit-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    max-width:1100px;
+    margin:0 auto;
+    align-items:center;
+  }
+  .visit-info p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;
+    line-height:1.5;
+    margin-bottom:24px;
+    color:var(--ink);
+  }
+  .visit-label{
+    font-size:11px!important;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--brown-dark)!important;
+    margin-bottom:6px!important;
+    font-family:'Inter',sans-serif!important;
+  }
+  .visit-map{
+    aspect-ratio:4/5;
+    border-radius:2px;
+    overflow:hidden;
+    background:var(--pink-soft);
+  }
+  .visit-map iframe{
+    width:100%;height:100%;
+    border:0;display:block;
+    filter:saturate(.85) contrast(.95);
+  }
+
+  /* ---------- PEDIDOS ---------- */
+  .pedidos{
+    background:var(--ink);
+    color:var(--cream);
+    text-align:center;
+  }
+  .pedidos .section-eyebrow{color:var(--pink-soft)}
+  .pedidos .section-title{color:var(--cream)}
+  .pedidos-text{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:300;
+    max-width:560px;
+    margin:0 auto 48px;
+    color:var(--pink-soft);
+  }
+  .pedidos-buttons{
+    display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  }
+  .btn-outline{
+    display:inline-block;
+    padding:16px 36px;
+    border:1px solid var(--cream);
+    color:var(--cream);
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    transition:all .3s ease;
+  }
+  .btn-outline:hover{background:var(--cream);color:var(--ink)}
+  .btn-filled{
+    display:inline-block;
+    padding:16px 36px;
+    background:var(--pink-deep);
+    color:var(--cream);
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    transition:all .3s ease;
+  }
+  .btn-filled:hover{background:var(--pink)}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--cream);
+    padding:64px 48px 32px;
+    border-top:1px solid var(--hair);
+    text-align:center;
+  }
+  .foot-logo{
+    display:flex;justify-content:center;
+  }
+  .foot-logo img{max-width:300px;width:80%;height:auto}
+  .foot-social{
+    display:flex;gap:20px;justify-content:center;
+    margin:28px 0;
+  }
+  .foot-social a{
+    color:var(--ink);
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:color .2s ease;
+  }
+  .foot-social a:hover{color:var(--pink-deep)}
+  .foot-copy{
+    font-size:11px;
+    color:var(--brown-dark);
+    letter-spacing:1px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;text-align:center;padding-top:120px}
+    .hero-content{padding-left:0;order:2}
+    .hero-tagline{margin-left:auto;margin-right:auto}
+    .hero-cta-group{justify-content:center}
+    .hero-img-wrap{order:1;max-height:50vh;margin:0 auto;max-width:400px}
+    .visit-grid{grid-template-columns:1fr;gap:48px}
+  }
+  @media (max-width:768px){
+    nav{padding:12px 20px}
+    .nav-links{
+      position:fixed;top:60px;left:0;right:0;
+      background:var(--cream);
+      flex-direction:column;
+      padding:24px;gap:20px;
+      transform:translateY(-150%);
+      transition:transform .3s ease;
+      border-bottom:1px solid var(--hair);
+    }
+    .nav-links.open{transform:translateY(0)}
+    .burger{display:flex}
+    section{padding:80px 24px}
+    .hero{padding:100px 20px 60px}
+  }
+
+  /* ---------- COMO COMPRAR ---------- */
+  .como-comprar{
+    background:var(--cream-soft);
+    padding:100px 48px;
+  }
+  .pasos-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:48px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .paso{
+    text-align:center;
+    padding:32px 20px;
+  }
+  .paso-num{
+    display:inline-flex;
+    align-items:center;justify-content:center;
+    width:60px;height:60px;
+    border-radius:50%;
+    background:var(--pink-deep);
+    color:var(--cream);
+    font-family:'Cormorant Garamond',serif;
+    font-size:26px;
+    font-weight:500;
+    margin-bottom:24px;
+  }
+  .paso-icon{
+    width:48px;height:48px;
+    margin:0 auto 18px;
+    color:var(--pink-deep);
+  }
+  .paso h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:500;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  .paso p{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--brown-dark);
+    max-width:240px;
+    margin:0 auto;
+  }
+  @media (max-width:768px){
+    .pasos-grid{grid-template-columns:1fr;gap:24px}
+    .como-comprar{padding:64px 24px}
+  }
+
+  /* ---------- PAYMENT BADGE ---------- */
+  .payment-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-top:24px;
+    padding:10px 18px;
+    background:var(--cream-soft);
+    border:1px solid var(--hair);
+    border-radius:30px;
+    font-size:11px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--brown-dark);
+  }
+  .payment-badge svg{width:18px;height:18px;color:var(--pink-deep)}
+
+  /* ---------- VALUES STRIP (Dawn-compatible: static) ---------- */
+  .values-strip{
+    background:var(--pink-soft);
+    border-top:1px solid var(--hair);
+    border-bottom:1px solid var(--hair);
+    padding:24px 16px;
+    text-align:center;
+  }
+  .values-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:8px 24px;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .values-grid span{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink);
+    letter-spacing:.3px;
+  }
+  .values-grid .sep{
+    color:var(--pink-deep);
+    font-family:'Inter',sans-serif;
+    font-style:normal;
+    font-size:11px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--cream-soft)}
+  .faq-list{
+    max-width:780px;
+    margin:0 auto;
+  }
+  .faq-item{
+    border-bottom:1px solid var(--hair);
+    padding:0;
+  }
+  .faq-item summary{
+    list-style:none;
+    cursor:pointer;
+    padding:24px 8px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;
+    font-weight:500;
+    color:var(--ink);
+    display:flex;justify-content:space-between;align-items:center;
+    gap:20px;
+    transition:color .2s ease;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary:hover{color:var(--pink-deep)}
+  .faq-item summary::after{
+    content:'+';
+    font-family:'Inter',sans-serif;
+    font-size:24px;
+    color:var(--pink-deep);
+    font-weight:300;
+    transition:transform .3s ease;
+    flex-shrink:0;
+  }
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item-content{
+    padding:0 8px 28px;
+    font-size:15px;
+    line-height:1.7;
+    color:var(--brown-dark);
+    max-width:680px;
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(30px);transition:all 1s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  <span>📍 Vitacura · Santiago</span>
+  <span class="dot">·</span>
+  <span>Pedidos con 5 días de anticipación</span>
+  <span class="dot">·</span>
+  <span>Retiro en tienda</span>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#inicio" class="nav-logo">
+    <img src="img/brand/logo-wordmark.png" alt="De Frambuesa Pastelería">
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#productos">Productos</a>
+    <a href="#como-comprar">Cómo Comprar</a>
+    <a href="#visitanos">Visítanos</a>
+    <a href="#pedidos" class="nav-cta">Pedir</a>
+  </div>
+  <div class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Vitacura · Santiago</div>
+    <img src="img/brand/logo-wordmark.png" alt="De Frambuesa Pastelería" class="hero-logo">
+    <p class="hero-tagline">Cada pieza, hecha a mano. Cada detalle, pensado. Reposterías finas donde lo elegante y lo cálido se encuentran.</p>
+    <div class="hero-cta-group">
+      <a href="#productos" class="hero-cta">Ver Carta</a>
+      <a href="#pedidos" class="hero-cta hero-cta-alt">Encargar Torta</a>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="img/products/torta-merengue-hero.jpg" alt="Torta Merengue Frambuesa">
+  </div>
+</section>
+
+<!-- VALUES STRIP -->
+<section class="values-strip">
+  <div class="values-grid">
+    <span>Hecho a mano</span>
+    <span class="sep">✦</span>
+    <span>Frambuesa fresca</span>
+    <span class="sep">✦</span>
+    <span>Pastelería fina</span>
+    <span class="sep">✦</span>
+    <span>Vitacura · Santiago</span>
+  </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="productos">
+  <div class="section-eyebrow reveal">Nuestra carta</div>
+  <h2 class="section-title reveal">Lo que horneamos</h2>
+  <div class="productos-grid">
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <span class="producto-tag">Más vendida</span>
+        <img src="img/products/torta-merengue.jpg" alt="Torta Merengue Frambuesa" loading="lazy">
+      </div>
+      <h3 class="producto-name">Torta Merengue Frambuesa</h3>
+      <p class="producto-desc">Merengue crocante, crema chantilly y frambuesas frescas</p>
+      <div class="producto-price">desde $32.000</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <span class="producto-tag">Tradicional</span>
+        <img src="img/products/kuchen-frambuesa.jpg" alt="Kuchen de Frambuesa" loading="lazy">
+      </div>
+      <h3 class="producto-name">Kuchen de Frambuesa</h3>
+      <p class="producto-desc">Base de mantequilla, frambuesas y crumble dorado</p>
+      <div class="producto-price">desde $18.000</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/torta-chocolate.jpg" alt="Torta de Chocolate" loading="lazy">
+      </div>
+      <h3 class="producto-name">Torta de Chocolate</h3>
+      <p class="producto-desc">Bizcocho de cacao, ganache oscura y manjar</p>
+      <div class="producto-price">desde $28.000</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/torta-tres-leches.jpg" alt="Torta Tres Leches" loading="lazy">
+      </div>
+      <h3 class="producto-name">Torta Tres Leches</h3>
+      <p class="producto-desc">Bizcocho empapado en tres leches y merengue tostado</p>
+      <div class="producto-price">desde $26.000</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <span class="producto-tag">Artesanal</span>
+        <img src="img/products/torta-milhojas.jpg" alt="Torta Milhojas" loading="lazy">
+      </div>
+      <h3 class="producto-name">Torta Milhojas</h3>
+      <p class="producto-desc">Hojaldre artesanal y manjar casero</p>
+      <div class="producto-price">desde $24.000</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/cheesecake-frambuesa.jpg" alt="Cheesecake de Frambuesa" loading="lazy">
+      </div>
+      <h3 class="producto-name">Cheesecake de Frambuesa</h3>
+      <p class="producto-desc">Base de galleta, crema de queso y coulis de frambuesa</p>
+      <div class="producto-price">desde $22.000</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/brownie.jpg" alt="Brownie de Chocolate" loading="lazy">
+      </div>
+      <h3 class="producto-name">Brownie</h3>
+      <p class="producto-desc">Chocolate intenso, nuez y ganache</p>
+      <div class="producto-price">$3.500 c/u</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/barrita-caluga.jpg" alt="Barrita de Caluga" loading="lazy">
+      </div>
+      <h3 class="producto-name">Barrita de Caluga</h3>
+      <p class="producto-desc">Capas de manjar, galleta y caramelo</p>
+      <div class="producto-price">$3.200 c/u</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/barrita-nuez.jpg" alt="Barrita de Nuez y Frambuesa" loading="lazy">
+      </div>
+      <h3 class="producto-name">Barrita de Nuez y Frambuesa</h3>
+      <p class="producto-desc">Crumble de nuez, crema de leche y frambuesas frescas</p>
+      <div class="producto-price">$3.500 c/u</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/barrita-toffee.jpg" alt="Barrita Toffee Chocolate" loading="lazy">
+      </div>
+      <h3 class="producto-name">Barrita Toffee Chocolate</h3>
+      <p class="producto-desc">Toffee, base de galleta y manto de chocolate</p>
+      <div class="producto-price">$3.500 c/u</div>
+    </div>
+
+    <div class="producto reveal">
+      <div class="producto-img">
+        <img src="img/products/barrita-chocotorta.jpg" alt="Barrita Chocotorta" loading="lazy">
+      </div>
+      <h3 class="producto-name">Barrita Chocotorta</h3>
+      <p class="producto-desc">Bizcocho de chocolate y crema de manjar</p>
+      <div class="producto-price">$3.500 c/u</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMO COMPRAR -->
+<section class="como-comprar" id="como-comprar">
+  <div class="section-eyebrow reveal">Tu pedido en 3 pasos</div>
+  <h2 class="section-title reveal">Cómo comprar</h2>
+  <div class="pasos-grid">
+
+    <div class="paso reveal">
+      <div class="paso-num">1</div>
+      <svg class="paso-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18l-2 13H5L3 6z"/>
+        <path d="M8 6V4a4 4 0 0 1 8 0v2"/>
+        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+      </svg>
+      <h3>Elige tu pastelería</h3>
+      <p>Recorre nuestra carta y agrega al carrito las tortas, kuchen o barritas que quieras.</p>
+    </div>
+
+    <div class="paso reveal">
+      <div class="paso-num">2</div>
+      <svg class="paso-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="5" width="18" height="16" rx="1"/>
+        <path d="M3 9h18"/>
+        <path d="M8 3v4M16 3v4"/>
+        <circle cx="16" cy="15" r="2.5" fill="currentColor" opacity=".3"/>
+        <path d="M16 13.5v1.5l1 1"/>
+      </svg>
+      <h3>Encarga con 5 días</h3>
+      <p>Selecciona la fecha de retiro. Trabajamos con 5 días de anticipación mínima.</p>
+    </div>
+
+    <div class="paso reveal">
+      <div class="paso-num">3</div>
+      <svg class="paso-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-6 9 6v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <h3>Retira en tienda</h3>
+      <p>Te esperamos en nuestra pastelería en Vitacura el día y hora acordados.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- HISTORIA -->
+<section class="historia" id="historia">
+  <div class="historia-wrap reveal">
+    <div class="section-eyebrow">Nuestra historia</div>
+    <h2 class="section-title">Hecho con tiempo</h2>
+    <p class="historia-text">
+      Nacimos del amor por la pastelería fina y la calidez de una sobremesa larga.
+      En cada pieza buscamos el punto exacto: <em>ni demasiado dulce, ni demasiado sobrio</em>.
+      Trabajamos con productores locales, mantequilla de calidad y frambuesas frescas todo el año.
+    </p>
+    <div class="divider-mini"></div>
+    <p class="historia-text">
+      Abrimos pronto en Vitacura. Te esperamos.
+    </p>
+    <div class="historia-firma">— De Frambuesa</div>
+  </div>
+</section>
+
+<!-- VISITANOS -->
+<section class="visitanos" id="visitanos">
+  <div class="section-eyebrow reveal">Encuéntranos</div>
+  <h2 class="section-title reveal">Visítanos</h2>
+  <div class="visit-grid">
+    <div class="visit-info reveal">
+      <p class="visit-label">Dirección</p>
+      <p>Av. Vitacura 0000<br>Vitacura, Santiago</p>
+      <p class="visit-label">Horario</p>
+      <p>Martes a Viernes · 10:00 – 20:00<br>Sábado y Domingo · 10:00 – 18:00<br>Lunes cerrado</p>
+      <p class="visit-label">Contacto</p>
+      <p>+56 9 0000 0000<br>hola@deframbuesa.cl</p>
+    </div>
+    <div class="visit-map reveal">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.5739!2d-70.5894!3d-33.3866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zVml0YWN1cmEsIFNhbnRpYWdv!5e0!3m2!1ses!2scl!4v1700000000000" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="section-eyebrow reveal">Antes de tu pedido</div>
+  <h2 class="section-title reveal">Preguntas frecuentes</h2>
+  <div class="faq-list reveal">
+
+    <details class="faq-item">
+      <summary>¿Con cuánta anticipación debo encargar?</summary>
+      <div class="faq-item-content">
+        Trabajamos con un mínimo de 5 días de anticipación para todos los pedidos. Para fechas especiales (matrimonios, eventos corporativos o cumpleaños temáticos) te recomendamos coordinar con al menos 2 semanas para asegurar disponibilidad.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Tienen despacho a domicilio?</summary>
+      <div class="faq-item-content">
+        Por el momento todos nuestros pedidos son con retiro en nuestra tienda en Vitacura. Estamos evaluando incorporar despacho próximamente — sigue nuestras redes para enterarte.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué métodos de pago aceptan?</summary>
+      <div class="faq-item-content">
+        Aceptamos pagos a través de Mercado Pago, que incluye tarjetas de crédito, débito y transferencia bancaria.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Puedo personalizar mi torta?</summary>
+      <div class="faq-item-content">
+        Sí. Para encargos especiales podemos coordinar tamaño, decoración y mensaje personalizado. Escríbenos por WhatsApp o email para ver opciones y cotización.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Hacen tortas para eventos grandes?</summary>
+      <div class="faq-item-content">
+        Sí. Para eventos de más de 50 personas trabajamos con formatos especiales y descuentos por cantidad. Recomendamos coordinar con al menos 2 semanas de anticipación.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo se conservan los productos?</summary>
+      <div class="faq-item-content">
+        Todas nuestras tortas y postres deben mantenerse refrigerados. Recomendamos sacarlos del refrigerador 20 minutos antes de servir para que recuperen su textura y sabor óptimos.
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- PEDIDOS -->
+<section class="pedidos" id="pedidos">
+  <div class="section-eyebrow reveal">Pedidos especiales</div>
+  <h2 class="section-title reveal">Encárganos tu torta</h2>
+  <p class="pedidos-text reveal">
+    Cumpleaños, matrimonios, regalos corporativos. Encarga con <strong style="color:var(--cream)">5 días de anticipación</strong> y retira en nuestra tienda en Vitacura el día acordado.
+  </p>
+  <div class="pedidos-buttons reveal">
+    <a href="#" class="btn-filled">WhatsApp Pedido</a>
+    <a href="mailto:hola@deframbuesa.cl" class="btn-outline">Escríbenos</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">
+    <img src="img/brand/logo-wordmark.png" alt="De Frambuesa Pastelería">
+  </div>
+  <div class="foot-social">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="mailto:hola@deframbuesa.cl">Email</a>
+  </div>
+  <div class="payment-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="6" width="20" height="13" rx="2"/>
+      <path d="M2 11h20"/>
+    </svg>
+    Aceptamos Mercado Pago
+  </div>
+  <div class="foot-copy">© 2026 De Frambuesa Pastelería · Vitacura, Santiago</div>
+</footer>
+
+<script>
+  window.addEventListener('scroll',()=>{
+    const nav=document.getElementById('nav');
+    if(window.scrollY>50)nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+  });
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
